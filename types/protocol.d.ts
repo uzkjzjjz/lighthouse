@@ -53,7 +53,7 @@ declare module Protocol {
    * serve as the arguments to event listener callbacks.
    * Inspired by work from https://github.com/bterlson/strict-event-emitter-types.
    */
-  type StrictEventEmitter<TEventRecord extends Record<keyof TEventRecord, any[]>> = {
+  type StrictEventEmitter<TEventRecord extends Record<keyof TEventRecord, unknown[]>> = {
     on<E extends keyof TEventRecord>(event: E, listener: (...args: TEventRecord[E]) => void): void;
 
     off<E extends keyof TEventRecord>(event: E, listener: Function): void;
@@ -67,6 +67,15 @@ declare module Protocol {
     once<E extends keyof TEventRecord>(event: E, listener: (...args: TEventRecord[E]) => void): void;
 
     emit<E extends keyof TEventRecord>(event: E, ...request: TEventRecord[E]): void;
+
+    listenerCount<E extends keyof TEventRecord>(event: E): number;
+  }
+
+  /**
+   * A constructable StrictEventEmitter.
+   */
+  interface StrictEventEmitterClass<TEventRecord extends Record<keyof TEventRecord, unknown[]>> {
+    new(): StrictEventEmitter<TEventRecord>;
   }
 }
 
