@@ -84,8 +84,11 @@ class Runner {
       /** @type {LH.RawIcu<LH.Result>} */
       const i18nLhr = {
         lighthouseVersion,
-        ...artifacts.URL,
+        initialUrl: artifacts.URL.initialUrl,
+        requestedUrl: artifacts.URL.requestedUrl,
+        mainDocumentUrl: artifacts.URL.mainDocumentUrl,
         finalUrl: artifacts.URL.mainDocumentUrl,
+        finalPageUrl: artifacts.URL.finalPageUrl,
         fetchTime: artifacts.fetchTime,
         gatherMode: artifacts.GatherContext.gatherMode,
         runtimeError: Runner.getArtifactRuntimeError(artifacts),
