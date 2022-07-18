@@ -69,7 +69,7 @@ const EMPTY_CHAIN_RECORDS = [];
 const mockArtifacts = (chainNetworkRecords) => {
   const trace = createTestTrace({topLevelTasks: [{ts: 0}]});
   const devtoolsLog = networkRecordsToDevtoolsLog(chainNetworkRecords);
-  const finalPageUrl = chainNetworkRecords[0] ? chainNetworkRecords[0].url : 'https://example.com';
+  const finalDisplayedUrl = chainNetworkRecords[0] ? chainNetworkRecords[0].url : 'https://example.com';
 
   return {
     traces: {
@@ -80,9 +80,9 @@ const mockArtifacts = (chainNetworkRecords) => {
     },
     URL: {
       initialUrl: 'about:blank',
-      requestedUrl: finalPageUrl,
-      mainDocumentUrl: finalPageUrl,
-      finalPageUrl,
+      requestedUrl: finalDisplayedUrl,
+      mainDocumentUrl: finalDisplayedUrl,
+      finalDisplayedUrl,
     },
   };
 };
@@ -116,7 +116,7 @@ describe('Performance: critical-request-chains audit', () => {
         initialUrl: 'about:blank',
         requestedUrl: 'https://www.reddit.com/r/nba',
         mainDocumentUrl: 'https://www.reddit.com/r/nba',
-        finalPageUrl: 'https://www.reddit.com/r/nba',
+        finalDisplayedUrl: 'https://www.reddit.com/r/nba',
       },
     };
     const context = {computedCache: new Map()};

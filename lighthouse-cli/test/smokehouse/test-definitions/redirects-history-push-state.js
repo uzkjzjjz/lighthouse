@@ -28,7 +28,7 @@ const expectations = {
   // TODO: Assert performance metrics on client-side redirects, see https://github.com/GoogleChrome/lighthouse/pull/10325
   lhr: {
     requestedUrl: `http://localhost:10200/js-redirect.html?delay=2000&jsDelay=5000&jsRedirect=%2Fonline-only.html%3Fdelay%3D1000%26redirect%3D%2Fredirects-final.html%253FpushState`,
-    finalPageUrl: 'http://localhost:10200/push-state',
+    finalDisplayedUrl: 'http://localhost:10200/push-state',
     audits: {
     },
     runWarnings: [
@@ -40,7 +40,7 @@ const expectations = {
       initialUrl: 'about:blank',
       requestedUrl: `http://localhost:10200/js-redirect.html?delay=2000&jsDelay=5000&jsRedirect=%2Fonline-only.html%3Fdelay%3D1000%26redirect%3D%2Fredirects-final.html%253FpushState`,
       mainDocumentUrl: 'http://localhost:10200/redirects-final.html?pushState',
-      finalPageUrl: 'http://localhost:10200/push-state',
+      finalDisplayedUrl: 'http://localhost:10200/push-state',
     },
   },
 };

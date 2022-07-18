@@ -188,7 +188,7 @@ describe('GatherRunner', function() {
       },
       baseArtifacts: {
         URL: {
-          finalPageUrl: url1,
+          finalDisplayedUrl: url1,
         },
       },
       driver,
@@ -196,7 +196,7 @@ describe('GatherRunner', function() {
 
     return GatherRunner.loadPage(driver, passContext).then(_ => {
       assert.equal(passContext.url, url2);
-      assert.equal(passContext.baseArtifacts.URL.finalPageUrl, url2);
+      assert.equal(passContext.baseArtifacts.URL.finalDisplayedUrl, url2);
     });
   });
 
@@ -268,7 +268,12 @@ describe('GatherRunner', function() {
     return GatherRunner.run(config.passes, options).then(artifacts => {
       assert.deepStrictEqual(
         artifacts.URL,
-        {initialUrl: 'about:blank', requestedUrl, mainDocumentUrl, finalPageUrl: mainDocumentUrl},
+        {
+          initialUrl: 'about:blank',
+          requestedUrl,
+          mainDocumentUrl,
+          finalDisplayedUrl: mainDocumentUrl,
+        },
         'did not find expected URL artifact');
     });
   });
@@ -652,7 +657,7 @@ describe('GatherRunner', function() {
         return Promise.resolve();
       },
       gotoURL() {
-        return Promise.resolve({finalPageUrl: '', timedOut: false});
+        return Promise.resolve({finalDisplayedUrl: '', timedOut: false});
       },
     };
 
@@ -1218,7 +1223,7 @@ describe('GatherRunner', function() {
       const unresolvedDriver = Object.assign({}, fakeDriver, {
         online: true,
         gotoURL() {
-          return Promise.resolve({finalPageUrl: requestedUrl, timedOut: false});
+          return Promise.resolve({finalDisplayedUrl: requestedUrl, timedOut: false});
         },
         endDevtoolsLog() {
           return unresolvedPerfLog;
@@ -1285,8 +1290,8 @@ describe('GatherRunner', function() {
 
       const {gotoURL} = await importMock('../../gather/driver/navigation.js', import.meta);
       gotoURL
-        .mockResolvedValueOnce({finalPageUrl: requestedUrl, warnings: []})
-        .mockResolvedValueOnce({finalPageUrl: requestedUrl, warnings: ['It is too slow']});
+        .mockResolvedValueOnce({finalDisplayedUrl: requestedUrl, warnings: []})
+        .mockResolvedValueOnce({finalDisplayedUrl: requestedUrl, warnings: ['It is too slow']});
 
       return GatherRunner.run(config.passes, {
         driver: timedoutDriver,

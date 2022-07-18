@@ -35,7 +35,7 @@ async function snapshotGather(options) {
       const baseArtifacts = await getBaseArtifacts(config, driver, {gatherMode: 'snapshot'});
       baseArtifacts.URL = {
         initialUrl: url,
-        finalPageUrl: url,
+        finalDisplayedUrl: url,
       };
 
       const artifactDefinitions = config.artifacts || [];

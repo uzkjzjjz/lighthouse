@@ -90,7 +90,7 @@ class Runner {
         initialUrl: artifacts.URL.initialUrl,
         requestedUrl: artifacts.URL.requestedUrl,
         mainDocumentUrl: artifacts.URL.mainDocumentUrl,
-        finalPageUrl: artifacts.URL.finalPageUrl,
+        finalDisplayedUrl: artifacts.URL.finalDisplayedUrl,
         finalUrl: artifacts.URL.mainDocumentUrl,
         fetchTime: artifacts.fetchTime,
         gatherMode: artifacts.GatherContext.gatherMode,

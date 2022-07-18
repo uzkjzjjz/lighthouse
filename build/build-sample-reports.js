@@ -160,7 +160,7 @@ async function generateErrorLHR() {
       initialUrl: 'about:blank',
       requestedUrl: 'http://fakeurl.com',
       mainDocumentUrl: 'http://fakeurl.com',
-      finalPageUrl: 'http://fakeurl.com',
+      finalDisplayedUrl: 'http://fakeurl.com',
     },
     GatherContext: {gatherMode: 'navigation'},
     Timing: [],

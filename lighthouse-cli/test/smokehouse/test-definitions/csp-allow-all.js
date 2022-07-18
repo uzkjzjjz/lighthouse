@@ -22,7 +22,7 @@ const expectations = {
   },
   lhr: {
     requestedUrl: 'http://localhost:10200/csp.html',
-    finalPageUrl: 'http://localhost:10200/csp.html',
+    finalDisplayedUrl: 'http://localhost:10200/csp.html',
     audits: {},
   },
 };

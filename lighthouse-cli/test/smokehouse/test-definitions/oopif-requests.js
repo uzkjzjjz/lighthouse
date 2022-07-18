@@ -42,7 +42,7 @@ const config = {
 const expectations = {
   lhr: {
     requestedUrl: 'http://localhost:10200/oopif-requests.html',
-    finalPageUrl: 'http://localhost:10200/oopif-requests.html',
+    finalDisplayedUrl: 'http://localhost:10200/oopif-requests.html',
     audits: {
       'network-requests': {
         // Multiple session attach handling fixed in M105

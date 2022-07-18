@@ -463,7 +463,7 @@ describe('OffscreenImages audit', () => {
         initialUrl: 'about:blank',
         requestedUrl: recordA.url,
         mainDocumentUrl: recordA.url,
-        finalPageUrl: recordA.url,
+        finalDisplayedUrl: recordA.url,
       },
     };
 
@@ -528,7 +528,7 @@ describe('OffscreenImages audit', () => {
         initialUrl: 'about:blank',
         requestedUrl: recordA.url,
         mainDocumentUrl: recordA.url,
-        finalPageUrl: recordA.url,
+        finalDisplayedUrl: recordA.url,
       },
     };
 

@@ -148,7 +148,7 @@ function getLegacyJavascriptResults(code, map, {sourceMaps}) {
       initialUrl: 'about:blank',
       requestedUrl: documentUrl,
       mainDocumentUrl: documentUrl,
-      finalPageUrl: documentUrl,
+      finalDisplayedUrl: documentUrl,
     },
     devtoolsLogs: {
       [LegacyJavascript.DEFAULT_PASS]: devtoolsLogs,

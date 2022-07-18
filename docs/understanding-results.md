@@ -18,7 +18,7 @@ For an always up-to-date definition of the LHR, take a look [at our typedefs](ht
 | initialUrl | The URL of the page before Lighthouse starts. |
 | requestedUrl | The URL that was supplied to Lighthouse and initially navigated to. |
 | mainDocumentUrl | The URL of the main document request during the final page navigation. |
-| finalPageUrl | The URL of the page after all redirects, history API updates, etc. |
+| finalDisplayedUrl | The URL of the page after all redirects, history API updates, etc. |
 | [audits](#audits) | An object containing the results of the audits. |
 | [configSettings](#config-settings) | An object containing information about the configuration used by Lighthouse. |
 | [timing](#timing) | An object containing information about how long Lighthouse spent auditing. |
@@ -36,7 +36,7 @@ For an always up-to-date definition of the LHR, take a look [at our typedefs](ht
   "initialUrl": "about:blank",
   "requestedUrl": "http://example.com",
   "mainDocumentUrl": "https://www.example.com/",
-  "finalPageUrl": "https://www.example.com/",
+  "finalDisplayedUrl": "https://www.example.com/",
   "audits": {...},
   "configSettings": {...},
   "timing": {...},

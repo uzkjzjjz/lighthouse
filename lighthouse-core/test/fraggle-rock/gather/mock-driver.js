@@ -212,7 +212,7 @@ function createMockBaseArtifacts() {
       initialUrl: 'about:blank',
       requestedUrl: 'https://example.com',
       mainDocumentUrl: 'https://example.com',
-      finalPageUrl: 'https://example.com',
+      finalDisplayedUrl: 'https://example.com',
     },
     PageLoadError: null,
     settings: constants.defaultSettings,
@@ -267,7 +267,7 @@ async function mockDriverSubmodules() {
   };
 
   function reset() {
-    navigationMock.gotoURL = fnAny().mockResolvedValue({finalPageUrl: 'https://example.com', warnings: [], timedOut: false});
+    navigationMock.gotoURL = fnAny().mockResolvedValue({finalDisplayedUrl: 'https://example.com', warnings: [], timedOut: false});
     prepareMock.prepareThrottlingAndNetwork = fnAny().mockResolvedValue(undefined);
     prepareMock.prepareTargetForTimespanMode = fnAny().mockResolvedValue(undefined);
     prepareMock.prepareTargetForNavigationMode = fnAny().mockResolvedValue({warnings: []});

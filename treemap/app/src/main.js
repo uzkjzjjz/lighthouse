@@ -75,7 +75,7 @@ class TreemapViewer {
     /** @type {WeakMap<LH.Treemap.Node, LH.Treemap.NodePath>} */
     this.nodeToPathMap = new WeakMap();
 
-    this.documentUrl = new URL(options.lhr.finalPageUrl);
+    this.documentUrl = new URL(options.lhr.finalDisplayedUrl);
     this.el = el;
     this.getHueForD1NodeName = TreemapUtil.stableHasher(TreemapUtil.COLOR_HUES);
 

@@ -121,8 +121,8 @@ class LinkText extends Audit {
           href.startsWith('javascript:') ||
           href.startsWith('mailto:') ||
           // This line prevents the audit from flagging anchor links.
-          // In this case it is better to use `finalPageUrl` than `mainDocumentUrl`.
-          URL.equalWithExcludedFragments(link.href, artifacts.URL.finalPageUrl)
+          // In this case it is better to use `finalDisplayedUrl` than `mainDocumentUrl`.
+          URL.equalWithExcludedFragments(link.href, artifacts.URL.finalDisplayedUrl)
         ) {
           return false;
         }

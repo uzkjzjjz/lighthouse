@@ -201,7 +201,7 @@ declare module Artifacts {
      */
     mainDocumentUrl?: string;
     /** URL of the main frame after Lighthouse finishes. */
-    finalPageUrl: string;
+    finalDisplayedUrl: string;
   }
 
   interface NodeDetails {

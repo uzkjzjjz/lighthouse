@@ -58,7 +58,7 @@ async function createChainsFromMockRecords(prioritiesList, edges, setExtrasFn, r
     initialUrl: 'about:blank',
     requestedUrl: docUrl,
     mainDocumentUrl: docUrl,
-    finalPageUrl: docUrl,
+    finalDisplayedUrl: docUrl,
   };
   const devtoolsLog = networkRecordsToDevtoolsLog(networkRecords);
 

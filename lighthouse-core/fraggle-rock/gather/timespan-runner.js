@@ -49,14 +49,14 @@ async function startTimespanGather(options) {
 
   return {
     async endTimespanGather() {
-      const finalPageUrl = await driver.url();
+      const finalDisplayedUrl = await driver.url();
 
       const runnerOptions = {config, computedCache};
       const artifacts = await Runner.gather(
         async () => {
           baseArtifacts.URL = {
             initialUrl,
-            finalPageUrl,
+            finalDisplayedUrl,
           };
 
           await collectPhaseArtifacts({phase: 'stopSensitiveInstrumentation', ...phaseOptions});

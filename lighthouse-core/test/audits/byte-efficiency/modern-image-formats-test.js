@@ -43,7 +43,7 @@ function generateArtifacts(images) {
 
   return {
     GatherContext: {gatherMode: 'navigation'},
-    URL: {finalPageUrl: 'http://google.com/'},
+    URL: {finalDisplayedUrl: 'http://google.com/'},
     ImageElements: imageElements,
     OptimizedImages: optimizedImages,
   };

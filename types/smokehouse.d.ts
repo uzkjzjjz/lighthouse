@@ -13,7 +13,7 @@ declare global {
     interface ExpectedLHR {
       audits: Record<string, any>;
       requestedUrl: string;
-      finalPageUrl: string | RegExp;
+      finalDisplayedUrl: string | RegExp;
       userAgent?: string | RegExp;
       runWarnings?: Array<string|RegExp> | {length: string | number};
       runtimeError?: {

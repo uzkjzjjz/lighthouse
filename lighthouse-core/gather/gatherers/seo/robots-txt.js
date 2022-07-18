@@ -18,8 +18,8 @@ class RobotsTxt extends FRGatherer {
    * @return {Promise<LH.Artifacts['RobotsTxt']>}
    */
   async getArtifact(passContext) {
-    const {finalPageUrl} = passContext.baseArtifacts.URL;
-    const robotsUrl = new URL('/robots.txt', finalPageUrl).href;
+    const {finalDisplayedUrl} = passContext.baseArtifacts.URL;
+    const robotsUrl = new URL('/robots.txt', finalDisplayedUrl).href;
     return passContext.driver.fetcher.fetchResource(robotsUrl)
       .catch(err => ({status: null, content: null, errorMessage: err.message}));
   }

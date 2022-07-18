@@ -29,12 +29,12 @@ const expectations = {
       initialUrl: 'about:blank',
       requestedUrl: 'http://localhost:10200/online-only.html?delay=2000&redirect=%2Fredirects-final.html#hash',
       mainDocumentUrl: 'http://localhost:10200/redirects-final.html',
-      finalPageUrl: 'http://localhost:10200/redirects-final.html#hash',
+      finalDisplayedUrl: 'http://localhost:10200/redirects-final.html#hash',
     },
   },
   lhr: {
     requestedUrl: `http://localhost:10200/online-only.html?delay=2000&redirect=%2Fredirects-final.html#hash`,
-    finalPageUrl: 'http://localhost:10200/redirects-final.html#hash',
+    finalDisplayedUrl: 'http://localhost:10200/redirects-final.html#hash',
     audits: {
       'first-contentful-paint': {
         numericValue: '>=2000',

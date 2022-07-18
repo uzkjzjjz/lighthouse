@@ -82,9 +82,9 @@ class GatherRunner {
       });
       passContext.url = mainDocumentUrl;
       const {URL} = passContext.baseArtifacts;
-      if (!URL.finalPageUrl || !URL.mainDocumentUrl) {
+      if (!URL.finalDisplayedUrl || !URL.mainDocumentUrl) {
         URL.mainDocumentUrl = mainDocumentUrl;
-        URL.finalPageUrl = await passContext.driver.url();
+        URL.finalDisplayedUrl = await passContext.driver.url();
       }
       if (passContext.passConfig.loadFailureMode === 'fatal') {
         passContext.LighthouseRunWarnings.push(...warnings);
@@ -412,7 +412,7 @@ class GatherRunner {
         initialUrl: await options.driver.url(),
         requestedUrl: options.requestedUrl,
         mainDocumentUrl: '',
-        finalPageUrl: '',
+        finalDisplayedUrl: '',
       },
       Timing: [],
       PageLoadError: null,

@@ -25,7 +25,7 @@ interface Result {
    */
   finalUrl?: string;
   /** The URL of the page after Lighthouse finishes. */
-  finalPageUrl: string;
+  finalDisplayedUrl: string;
   /** The ISO-8601 timestamp of when the results were generated. */
   fetchTime: string;
   /** The version of Lighthouse with which these results were generated. */

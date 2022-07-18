@@ -30,7 +30,7 @@ function buildArtifacts(networkRecords) {
       initialUrl: 'about:blank',
       requestedUrl: mainResource.url,
       mainDocumentUrl: mainResource.url,
-      finalPageUrl: mainResource.url,
+      finalDisplayedUrl: mainResource.url,
     },
     devtoolsLogs: {defaultPass: devtoolsLog},
     traces: {defaultPass: trace},

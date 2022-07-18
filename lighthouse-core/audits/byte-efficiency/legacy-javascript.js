@@ -403,7 +403,7 @@ class LegacyJavascript extends ByteEfficiencyAudit {
    * @return {Promise<ByteEfficiencyProduct>}
    */
   static async audit_(artifacts, networkRecords, context) {
-    const mainDocumentEntity = thirdPartyWeb.getEntity(artifacts.URL.finalPageUrl);
+    const mainDocumentEntity = thirdPartyWeb.getEntity(artifacts.URL.finalDisplayedUrl);
     const bundles = await JsBundles.request(artifacts, context);
 
     /** @type {Item[]} */
