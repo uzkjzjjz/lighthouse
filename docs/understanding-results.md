@@ -15,10 +15,10 @@ For an always up-to-date definition of the LHR, take a look [at our typedefs](ht
 | lighthouseVersion | The version of Lighthouse with which this result was generated. |
 | fetchTime | The ISO-8601 timestamp of when the result was generated. |
 | userAgent | The user agent string of the version of Chrome that was used by Lighthouse. |
-| initialUrl | The URL of the page before Lighthouse starts. |
+| initialUrl | The URL displayed on the page before Lighthouse starts. |
 | requestedUrl | The URL that was supplied to Lighthouse and initially navigated to. |
 | mainDocumentUrl | The URL of the main document request during the final page navigation. |
-| finalDisplayedUrl | The URL of the page after all redirects, history API updates, etc. |
+| finalDisplayedUrl | The URL displayed on the page after all redirects, history API updates, etc. |
 | [audits](#audits) | An object containing the results of the audits. |
 | [configSettings](#config-settings) | An object containing information about the configuration used by Lighthouse. |
 | [timing](#timing) | An object containing information about how long Lighthouse spent auditing. |

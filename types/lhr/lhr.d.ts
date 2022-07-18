@@ -13,7 +13,7 @@ import {ConfigSettings} from './settings';
 interface Result {
   /** Gather mode used to collect artifacts for this result. */
   gatherMode: Result.GatherMode;
-  /** The URL of the page before Lighthouse starts. */
+  /** The URL displayed on the page before Lighthouse starts. */
   initialUrl: string;
   /** The URL that Lighthouse initially navigated to. Will be `undefined` in timespan/snapshot. */
   requestedUrl?: string;
@@ -24,7 +24,7 @@ interface Result {
    * @deprecated
    */
   finalUrl?: string;
-  /** The URL of the page after Lighthouse finishes. */
+  /** The URL displayed on the page after Lighthouse finishes. */
   finalDisplayedUrl: string;
   /** The ISO-8601 timestamp of when the results were generated. */
   fetchTime: string;

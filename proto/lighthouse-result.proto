@@ -230,8 +230,8 @@ message LighthouseResult {
   // URL of the main document request of the final navigation.
   string main_document_url = 18;
 
-  // URL of the page after Lighthouse finishes.
-  string final_page_url = 19;
+  // URL displayed on the page after Lighthouse finishes.
+  string final_displayed_url = 19;
 }
 
 // Message containing a category
