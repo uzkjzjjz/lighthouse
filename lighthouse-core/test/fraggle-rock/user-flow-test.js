@@ -353,7 +353,6 @@ describe('UserFlow', () => {
           // @ts-expect-error Only these artifacts are used by the test.
           artifacts: {
             URL: {
-              initialUrl: 'https://www.example.com',
               requestedUrl: 'https://www.example.com',
               mainDocumentUrl: 'https://www.example.com',
               finalDisplayedUrl: 'https://www.example.com',
@@ -366,7 +365,6 @@ describe('UserFlow', () => {
           // @ts-expect-error Only these artifacts are used by the test.
           artifacts: {
             URL: {
-              initialUrl: 'https://www.example.com',
               finalDisplayedUrl: 'https://www.example.com',
             },
             GatherContext: {gatherMode: 'timespan'},
@@ -378,7 +376,6 @@ describe('UserFlow', () => {
           // @ts-expect-error Only these artifacts are used by the test.
           artifacts: {
             URL: {
-              initialUrl: 'https://www.example.com',
               finalDisplayedUrl: 'https://www.example.com',
             },
             GatherContext: {gatherMode: 'snapshot'},

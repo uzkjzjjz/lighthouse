@@ -25,7 +25,6 @@ describe('Performance: preload-lcp audit', () => {
       },
       devtoolsLogs: {[PreloadLCPImage.DEFAULT_PASS]: networkRecordsToDevtoolsLog(networkRecords)},
       URL: {
-        initialUrl: 'about:blank',
         requestedUrl: finalDisplayedUrl,
         mainDocumentUrl: finalDisplayedUrl,
         finalDisplayedUrl,

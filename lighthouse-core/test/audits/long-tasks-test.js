@@ -54,7 +54,6 @@ function generateTraceWithLongTasks({count, duration = 200, withChildTasks = fal
 describe('Long tasks audit', () => {
   const devtoolsLog = networkRecordsToDevtoolsLog([{url: TASK_URL}]);
   const URL = {
-    initialUrl: 'about:blank',
     requestedUrl: TASK_URL,
     mainDocumentUrl: TASK_URL,
     finalDisplayedUrl: TASK_URL,

@@ -460,7 +460,6 @@ describe('OffscreenImages audit', () => {
       traces: {defaultPass: createTestTrace({topLevelTasks})},
       devtoolsLogs: {defaultPass: devtoolsLog},
       URL: {
-        initialUrl: 'about:blank',
         requestedUrl: recordA.url,
         mainDocumentUrl: recordA.url,
         finalDisplayedUrl: recordA.url,
@@ -525,7 +524,6 @@ describe('OffscreenImages audit', () => {
       traces: {defaultPass: createTestTrace({topLevelTasks})},
       devtoolsLogs: {defaultPass: devtoolsLog},
       URL: {
-        initialUrl: 'about:blank',
         requestedUrl: recordA.url,
         mainDocumentUrl: recordA.url,
         finalDisplayedUrl: recordA.url,

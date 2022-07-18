@@ -112,7 +112,6 @@ describe('Performance: Redirects audit', () => {
       traces: {defaultPass: createTestTrace({frameUrl, traceEnd: 5000})},
       devtoolsLogs: {defaultPass: devtoolsLog},
       URL: {
-        initialUrl: 'about:blank',
         requestedUrl: networkRecords[0].url,
         mainDocumentUrl: finalDisplayedUrl,
         finalDisplayedUrl,

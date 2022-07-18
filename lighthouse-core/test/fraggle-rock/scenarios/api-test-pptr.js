@@ -42,7 +42,6 @@ describe('Fraggle Rock API', function() {
       const {lhr, artifacts} = result;
       const url = `${state.serverBaseUrl}/onclick.html#done`;
       expect(artifacts.URL).toEqual({
-        initialUrl: url,
         finalDisplayedUrl: url,
       });
 
@@ -76,7 +75,6 @@ describe('Fraggle Rock API', function() {
 
       const {lhr, artifacts} = result;
       expect(artifacts.URL).toEqual({
-        initialUrl: 'about:blank',
         finalDisplayedUrl: `${state.serverBaseUrl}/onclick.html#done`,
       });
 
@@ -119,8 +117,7 @@ describe('Fraggle Rock API', function() {
 
     it('should compute results from timespan after page load', async () => {
       const {page, serverBaseUrl} = state;
-      const initialUrl = `${serverBaseUrl}/onclick.html`;
-      await page.goto(initialUrl);
+      await page.goto(`${serverBaseUrl}/onclick.html`);
       await page.waitForSelector('button');
 
       const run = await lighthouse.startTimespan({page});
@@ -136,8 +133,7 @@ describe('Fraggle Rock API', function() {
       if (!result) throw new Error('Lighthouse failed to produce a result');
 
       expect(result.artifacts.URL).toEqual({
-        initialUrl,
-        finalDisplayedUrl: `${initialUrl}#done`,
+        finalDisplayedUrl: `${serverBaseUrl}/onclick.html#done`,
       });
 
       const {auditResults, erroredAudits, notApplicableAudits} = getAuditsBreakdown(result.lhr);
@@ -164,7 +160,6 @@ describe('Fraggle Rock API', function() {
 
       const {lhr, artifacts} = result;
       expect(artifacts.URL).toEqual({
-        initialUrl: 'about:blank',
         requestedUrl: url,
         mainDocumentUrl: url,
         finalDisplayedUrl: url,
@@ -191,10 +186,9 @@ describe('Fraggle Rock API', function() {
 
     it('should compute results with callback requestor', async () => {
       const {page, serverBaseUrl} = state;
-      const initialUrl = `${serverBaseUrl}/links-to-index.html`;
       const requestedUrl = `${serverBaseUrl}/?redirect=/index.html`;
       const mainDocumentUrl = `${serverBaseUrl}/index.html`;
-      await page.goto(initialUrl);
+      await page.goto(`${serverBaseUrl}/links-to-index.html`);
 
       const requestor = jestMock.fn(async () => {
         await page.click('a');
@@ -209,7 +203,6 @@ describe('Fraggle Rock API', function() {
       expect(lhr.requestedUrl).toEqual(requestedUrl);
       expect(lhr.finalDisplayedUrl).toEqual(mainDocumentUrl);
       expect(artifacts.URL).toEqual({
-        initialUrl,
         requestedUrl,
         mainDocumentUrl,
         finalDisplayedUrl: mainDocumentUrl,

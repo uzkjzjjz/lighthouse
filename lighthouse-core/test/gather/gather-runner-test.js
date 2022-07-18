@@ -269,7 +269,6 @@ describe('GatherRunner', function() {
       assert.deepStrictEqual(
         artifacts.URL,
         {
-          initialUrl: 'about:blank',
           requestedUrl,
           mainDocumentUrl,
           finalDisplayedUrl: mainDocumentUrl,

@@ -172,7 +172,6 @@
     "skipAudits": null
   },
   "URL": {
-    "initialUrl": "about:blank",
     "requestedUrl": "http://localhost:10200/dobetterweb/dbw_tester.html",
     "mainDocumentUrl": "http://localhost:10200/dobetterweb/dbw_tester.html",
     "finalDisplayedUrl": "http://localhost:10200/dobetterweb/dbw_tester.html"

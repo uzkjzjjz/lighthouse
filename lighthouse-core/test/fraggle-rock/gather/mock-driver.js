@@ -209,7 +209,6 @@ function createMockBaseArtifacts() {
   return {
     fetchTime: new Date().toISOString(),
     URL: {
-      initialUrl: 'about:blank',
       requestedUrl: 'https://example.com',
       mainDocumentUrl: 'https://example.com',
       finalDisplayedUrl: 'https://example.com',
