@@ -42,7 +42,7 @@ export class ReportUIFeatures {
    * @param {LH.Renderer.Options} opts
    */
   constructor(dom, opts = {}) {
-    /** @type {LH.Result} */
+    /** @type {LH.ReportResult} */
     this.json; // eslint-disable-line no-unused-expressions
     /** @type {DOM} */
     this._dom = dom;
@@ -59,7 +59,7 @@ export class ReportUIFeatures {
    * @param {LH.Result} lhr
    */
   initFeatures(lhr) {
-    this.json = lhr;
+    this.json = Util.prepareReportResult(lhr);
 
     if (this._topbar) {
       this._topbar.enable(lhr);
