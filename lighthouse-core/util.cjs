@@ -76,6 +76,18 @@ class Util {
       clone.configSettings.formFactor = clone.configSettings.emulatedFormFactor;
     }
 
+    // If LHR is older than 10.0 it will not have the `finalDisplayedUrl` property.
+    // It should have the `finalUrl` property which will work fine for the report.
+    if (!clone.finalDisplayedUrl && clone.finalUrl) {
+      clone.finalDisplayedUrl = clone.finalUrl;
+    }
+
+    // If LHR is older than 10.0 it will not have the `mainDocumentUrl` property.
+    // It should have the `finalUrl` property which is the same as `mainDocumentUrl`.
+    if (!clone.mainDocumentUrl) {
+      clone.mainDocumentUrl = clone.finalUrl;
+    }
+
     for (const audit of Object.values(clone.audits)) {
       // Turn 'not-applicable' (LHR <4.0) and 'not_applicable' (older proto versions)
       // into 'notApplicable' (LHR ≥4.0).
