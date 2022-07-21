@@ -254,9 +254,7 @@ describe('GatherRunner', function() {
     const mainDocumentUrl = 'https://example.com/interstitial';
     const {gotoURL} = await importMock('../../gather/driver/navigation.js', import.meta);
     gotoURL.mockResolvedValue({mainDocumentUrl, timedOut: false, warnings: []});
-    fakeDriver.url = jestMock.fn()
-      .mockResolvedValueOnce('about:blank')
-      .mockResolvedValueOnce(mainDocumentUrl);
+    fakeDriver.url = jestMock.fn().mockResolvedValue(mainDocumentUrl);
     const config = await makeConfig({passes: [{passName: 'defaultPass'}]});
     const options = {
       requestedUrl,
