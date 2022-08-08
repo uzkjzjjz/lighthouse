@@ -75,7 +75,15 @@ class TreemapViewer {
     /** @type {WeakMap<LH.Treemap.Node, LH.Treemap.NodePath>} */
     this.nodeToPathMap = new WeakMap();
 
-    this.documentUrl = new URL(options.lhr.finalDisplayedUrl);
+    // Priority breakdown:
+    // 1) `mainDocumentUrl`: This is what we want post-10.0 for navigation reports.
+    // 2) `finalUrl`: This is what we want pre-10.0 for navigation reports.
+    // 3) `finalDisplayedUrl`: Timespan and snapshot reports don't have either of the above URLs, so use this one for display / origin check purposes.
+    const documentUrlString = options.lhr.mainDocumentUrl ||
+      options.lhr.finalUrl ||
+      options.lhr.finalDisplayedUrl;
+
+    this.documentUrl = new URL(documentUrlString);
     this.el = el;
     this.getHueForD1NodeName = TreemapUtil.stableHasher(TreemapUtil.COLOR_HUES);
 
