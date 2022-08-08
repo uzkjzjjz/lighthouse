@@ -119,6 +119,8 @@ function openTreemap(json) {
   /** @type {LH.Treemap.Options} */
   const treemapOptions = {
     lhr: {
+      mainDocumentUrl: json.mainDocumentUrl,
+      finalUrl: json.finalUrl,
       finalDisplayedUrl: json.finalDisplayedUrl,
       audits: {
         'script-treemap-data': json.audits['script-treemap-data'],
