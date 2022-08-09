@@ -41,6 +41,7 @@ function getFilenamePrefix(name, fetchTime) {
 function getLhrFilenamePrefix(lhr) {
   // If LHR is older than 10.0 it will not have the `finalDisplayedUrl` property.
   // Old LHRs should have the `finalUrl` property which will work fine for the report.
+  // TODO: Move this logic to a shared dependency between file namer and report utils.
   let url = lhr.finalDisplayedUrl;
   if (!url && lhr.finalUrl) url = lhr.finalUrl;
 
