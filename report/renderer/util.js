@@ -69,9 +69,7 @@ class Util {
    * @param {LH.Result} lhr
    */
   static getMainDocumentUrl(lhr) {
-    if (lhr.mainDocumentUrl) return lhr.mainDocumentUrl;
-    if (lhr.finalUrl) return lhr.finalUrl;
-    throw new Error('Could not determine main document URL');
+    return lhr.mainDocumentUrl || lhr.finalUrl;
   }
 
   /**
