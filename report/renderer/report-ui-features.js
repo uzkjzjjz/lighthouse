@@ -242,7 +242,7 @@ export class ReportUIFeatures {
 
     tablesWithUrls.forEach((tableEl) => {
       const rowEls = getTableRows(tableEl);
-      const thirdPartyRows = this._getThirdPartyRows(rowEls, this.json.finalDisplayedUrl);
+      const thirdPartyRows = this._getThirdPartyRows(rowEls, Util.getFinalDisplayedUrl(this.json));
 
       // create input box
       const filterTemplate = this._dom.createComponent('3pFilter');
