@@ -348,7 +348,10 @@ export class ReportUIFeatures {
    */
   _saveFile(blob) {
     const ext = blob.type.match('json') ? '.json' : '.html';
-    const filename = getLhrFilenamePrefix(this.json) + ext;
+    const filename = getLhrFilenamePrefix({
+      finalDisplayedUrl: Util.getFinalDisplayedUrl(this.json),
+      fetchTime: this.json.fetchTime,
+    }) + ext;
     if (this._opts.onSaveFileOverride) {
       this._opts.onSaveFileOverride(blob, filename);
     } else {

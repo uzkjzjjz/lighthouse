@@ -35,17 +35,11 @@ function getFilenamePrefix(name, fetchTime) {
 
 /**
  * Generate a filenamePrefix of hostname_YYYY-MM-DD_HH-MM-SS.
- * @param {{finalDisplayedUrl: string, finalUrl?: string, fetchTime: string}} lhr
+ * @param {{finalDisplayedUrl: string, fetchTime: string}} lhr
  * @return {string}
  */
 function getLhrFilenamePrefix(lhr) {
-  // If LHR is older than 10.0 it will not have the `finalDisplayedUrl` property.
-  // Old LHRs should have the `finalUrl` property which will work fine for the report.
-  // TODO: Move this logic to a shared dependency between file namer and report utils.
-  let url = lhr.finalDisplayedUrl;
-  if (!url && lhr.finalUrl) url = lhr.finalUrl;
-
-  const hostname = new URL(url).hostname;
+  const hostname = new URL(lhr.finalDisplayedUrl).hostname;
   return getFilenamePrefix(hostname, lhr.fetchTime);
 }
 
