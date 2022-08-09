@@ -55,6 +55,28 @@ class Util {
   }
 
   /**
+   * If LHR is older than 10.0 it will not have the `finalDisplayedUrl` property.
+   * Old LHRs should have the `finalUrl` property which will work fine for the report.
+   *
+   * @param {LH.Result} lhr
+   */
+  static getFinalDisplayedUrl(lhr) {
+    if (lhr.finalDisplayedUrl) return lhr.finalDisplayedUrl;
+    if (lhr.finalUrl) return lhr.finalUrl;
+    throw new Error('Could not determine final displayed URL');
+  }
+
+  /**
+   * If LHR is older than 10.0 it will not have the `mainDocumentUrl` property.
+   * Old LHRs should have the `finalUrl` property which is the same as `mainDocumentUrl`.
+   *
+   * @param {LH.Result} lhr
+   */
+  static getMainDocumentUrl(lhr) {
+    return lhr.mainDocumentUrl || lhr.finalUrl;
+  }
+
+  /**
    * Returns a new LHR that's reshaped for slightly better ergonomics within the report rendereer.
    * Also, sets up the localized UI strings used within renderer and makes changes to old LHRs to be
    * compatible with current renderer.
@@ -76,17 +98,8 @@ class Util {
       clone.configSettings.formFactor = clone.configSettings.emulatedFormFactor;
     }
 
-    // If LHR is older than 10.0 it will not have the `finalDisplayedUrl` property.
-    // It should have the `finalUrl` property which will work fine for the report.
-    if (!clone.finalDisplayedUrl && clone.finalUrl) {
-      clone.finalDisplayedUrl = clone.finalUrl;
-    }
-
-    // If LHR is older than 10.0 it will not have the `mainDocumentUrl` property.
-    // It should have the `finalUrl` property which is the same as `mainDocumentUrl`.
-    if (!clone.mainDocumentUrl) {
-      clone.mainDocumentUrl = clone.finalUrl;
-    }
+    clone.finalDisplayedUrl = this.getFinalDisplayedUrl(clone);
+    clone.mainDocumentUrl = this.getMainDocumentUrl(clone);
 
     for (const audit of Object.values(clone.audits)) {
       // Turn 'not-applicable' (LHR <4.0) and 'not_applicable' (older proto versions)
