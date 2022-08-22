@@ -14,7 +14,7 @@ import {Runner} from '../runner.js';
 
 /**
  * @param {LH.Puppeteer.Page} page
- * @param {ConstructorParameters<LH.UserFlow>[1]} [options]
+ * @param {LH.UserFlow.Options} [options]
  */
 async function startFlow(page, options) {
   return new UserFlow(page, options);

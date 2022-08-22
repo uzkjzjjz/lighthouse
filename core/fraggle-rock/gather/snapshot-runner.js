@@ -13,15 +13,16 @@ import {initializeConfig} from '../config/config.js';
 import {getBaseArtifacts, finalizeArtifacts} from './base-artifacts.js';
 
 /**
- * @param {{page: LH.Puppeteer.Page, config?: LH.Config.Json, flags?: LH.Flags}} options
+ * @param {LH.Puppeteer.Page} page
+ * @param {{config?: LH.Config.Json, flags?: LH.Flags}} [options]
  * @return {Promise<LH.Gatherer.FRGatherResult>}
  */
-async function snapshotGather(options) {
+async function snapshotGather(page, options = {}) {
   const {flags = {}} = options;
   log.setLevel(flags.logLevel || 'error');
 
   const {config} = await initializeConfig('snapshot', options.config, flags);
-  const driver = new Driver(options.page);
+  const driver = new Driver(page);
   await driver.connect();
 
   /** @type {Map<string, LH.ArbitraryEqualityMap>} */

@@ -107,7 +107,7 @@ async function rebaselineArtifacts(artifactKeys) {
 
   await browser.close();
 
-  let flowArtifacts = flow.createArtifactsJson();
+  let flowArtifacts = await flow.createArtifactsJson();
 
   // Normalize some data so it doesn't change on every update.
   for (const {artifacts} of flowArtifacts.gatherSteps) {
@@ -120,6 +120,14 @@ async function rebaselineArtifacts(artifactKeys) {
     for (let i = 0; i < flowArtifacts.gatherSteps.length; ++i) {
       const gatherStep = flowArtifacts.gatherSteps[i];
       const newGatherStep = newFlowArtifacts.gatherSteps[i];
+
+      gatherStep.stepFlags = newGatherStep.stepFlags;
+      for (const key of Object.keys(gatherStep)) {
+        if (key in newGatherStep) continue;
+        // @ts-expect-error
+        delete gatherStep[key];
+      }
+
       for (const key of artifactKeys) {
         // @ts-expect-error
         gatherStep.artifacts[key] = newGatherStep.artifacts[key];

@@ -36,7 +36,7 @@ describe('Fraggle Rock API', function() {
     it('should compute accessibility results on the page as-is', async () => {
       await setupTestPage();
 
-      const result = await lighthouse.snapshot({page: state.page});
+      const result = await lighthouse.snapshot(state.page);
       if (!result) throw new Error('Lighthouse failed to produce a result');
 
       const {lhr, artifacts} = result;
@@ -64,7 +64,7 @@ describe('Fraggle Rock API', function() {
     });
 
     it('should compute ConsoleMessage results across a span of time', async () => {
-      const run = await lighthouse.startTimespan({page: state.page});
+      const run = await lighthouse.startTimespan(state.page);
 
       await setupTestPage();
 
@@ -123,7 +123,7 @@ describe('Fraggle Rock API', function() {
       await page.goto(initialUrl);
       await page.waitForSelector('button');
 
-      const run = await lighthouse.startTimespan({page});
+      const run = await lighthouse.startTimespan(state.page);
 
       await page.click('button');
       await page.waitForSelector('input');
@@ -159,7 +159,7 @@ describe('Fraggle Rock API', function() {
     it('should compute both snapshot & timespan results', async () => {
       const {page, serverBaseUrl} = state;
       const url = `${serverBaseUrl}/index.html`;
-      const result = await lighthouse.navigation(url, {page});
+      const result = await lighthouse.navigation(page, url);
       if (!result) throw new Error('Lighthouse failed to produce a result');
 
       const {lhr, artifacts} = result;
@@ -200,7 +200,7 @@ describe('Fraggle Rock API', function() {
         await page.click('a');
       });
 
-      const result = await lighthouse.navigation(requestor, {page});
+      const result = await lighthouse.navigation(page, requestor);
       if (!result) throw new Error('Lighthouse failed to produce a result');
 
       expect(requestor).toHaveBeenCalled();

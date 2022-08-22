@@ -92,15 +92,15 @@ describe('UserFlow', () => {
       await flow.navigate('https://example.com/1', {stepName: 'My Step'});
 
       const flags = {maxWaitForLoad: 1000};
-      await flow.navigate('https://example.com/2', {flags});
+      await flow.navigate('https://example.com/2', flags);
 
       await flow.navigate('https://example.com/3');
 
       expect(navigationModule.navigationGather).toHaveBeenCalledTimes(3);
       expect(flow._gatherSteps).toMatchObject([
-        {name: 'My Step'},
-        {name: 'Navigation report (www.example.com/)'},
-        {name: 'Navigation report (www.example.com/)'},
+        {stepFlags: {stepName: 'My Step'}},
+        {stepFlags: undefined},
+        {stepFlags: undefined},
       ]);
     });
 
@@ -110,14 +110,14 @@ describe('UserFlow', () => {
 
       // Try once when we have some other settings.
       const flags = {maxWaitForLoad: 1000};
-      await flow.navigate('https://example.com/2', {flags});
+      await flow.navigate('https://example.com/2', flags);
 
       // Try once when we don't have any other settings.
       await flow.navigate('https://example.com/3');
 
       // Try once when we explicitly set it.
       const flagsExplicit = {disableStorageReset: false};
-      await flow.navigate('https://example.com/4', {flags: flagsExplicit});
+      await flow.navigate('https://example.com/4', flagsExplicit);
 
       // Check that we have the property set.
       expect(navigationModule.navigationGather).toHaveBeenCalledTimes(4);
@@ -143,11 +143,11 @@ describe('UserFlow', () => {
 
       // Try once when we have some other settings.
       const flags = {maxWaitForLoad: 1000};
-      await flow.navigate('https://example.com/2', {flags});
+      await flow.navigate('https://example.com/2', flags);
 
       // Try once when we explicitly set it.
       const flagsExplicit = {skipAboutBlank: false};
-      await flow.navigate('https://example.com/3', {flags: flagsExplicit});
+      await flow.navigate('https://example.com/3', flagsExplicit);
 
       // Check that we have the property set.
       expect(navigationModule.navigationGather).toHaveBeenCalledTimes(3);
@@ -236,8 +236,8 @@ describe('UserFlow', () => {
 
       expect(timespanModule.startTimespanGather).toHaveBeenCalledTimes(2);
       expect(flow._gatherSteps).toMatchObject([
-        {name: 'My Timespan'},
-        {name: 'Timespan report (www.example.com/)'},
+        {stepFlags: {stepName: 'My Timespan'}},
+        {stepFlags: undefined},
       ]);
     });
   });
@@ -264,8 +264,8 @@ describe('UserFlow', () => {
 
       expect(snapshotModule.snapshotGather).toHaveBeenCalledTimes(2);
       expect(flow._gatherSteps).toMatchObject([
-        {name: 'My Snapshot'},
-        {name: 'Snapshot report (www.example.com/)'},
+        {stepFlags: {stepName: 'My Snapshot'}},
+        {stepFlags: undefined},
       ]);
     });
   });
@@ -331,23 +331,10 @@ describe('UserFlow', () => {
         },
       };
 
-      /** @type {LH.Config.Json} */
-      const timespanConfig = {
-        extends: 'lighthouse:default',
-        settings: {
-          onlyCategories: ['performance'],
-        },
-      };
-
-      /** @type {LH.Flags} */
-      const snapshotFlags = {
-        onlyCategories: ['accessibility'],
-      };
-
       /** @type {LH.UserFlow.GatherStep[]} */
       const gatherSteps = [
         {
-          name: 'Navigation',
+          stepFlags: {stepName: 'Navigation'},
           // @ts-expect-error Only these artifacts are used by the test.
           artifacts: {
             URL: {
@@ -360,7 +347,7 @@ describe('UserFlow', () => {
           },
         },
         {
-          name: 'Timespan',
+          stepFlags: {stepName: 'Timespan', onlyCategories: ['performance']},
           // @ts-expect-error Only these artifacts are used by the test.
           artifacts: {
             URL: {
@@ -369,10 +356,9 @@ describe('UserFlow', () => {
             },
             GatherContext: {gatherMode: 'timespan'},
           },
-          config: timespanConfig,
         },
         {
-          name: 'Snapshot',
+          stepFlags: {stepName: 'Snapshot', onlyCategories: ['accessibility']},
           // @ts-expect-error Only these artifacts are used by the test.
           artifacts: {
             URL: {
@@ -381,7 +367,6 @@ describe('UserFlow', () => {
             },
             GatherContext: {gatherMode: 'snapshot'},
           },
-          flags: snapshotFlags,
         },
       ];
 
