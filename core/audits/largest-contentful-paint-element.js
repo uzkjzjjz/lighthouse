@@ -49,7 +49,7 @@ class LargestContentfulPaintElement extends Audit {
 
     /** @type {LH.Audit.Details.Table['headings']} */
     const headings = [
-      {key: 'node', itemType: 'node', text: str_(i18n.UIStrings.columnElement)},
+      {key: 'node', valueType: 'node', label: str_(i18n.UIStrings.columnElement)},
     ];
 
     const details = Audit.makeTableDetails(headings, lcpElementDetails);
