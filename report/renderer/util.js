@@ -98,6 +98,23 @@ class Util {
             }
           }
         }
+
+        // Circa 10.0, table items were refactored.
+        if (audit.details.type === 'table') {
+          for (const heading of audit.details.headings) {
+            /** @type {{itemType: LH.Audit.Details.ItemValueType|undefined, text: string|undefined}} */
+            // @ts-expect-error
+            const {itemType, text} = heading;
+            if (itemType !== undefined) heading.valueType = itemType;
+            if (text !== undefined) heading.label = text;
+
+            // @ts-expect-error
+            const {itemType: subItemsItemType} = heading.subItemsHeading || {};
+            if (heading.subItemsHeading && subItemsItemType !== undefined) {
+              heading.subItemsHeading.valueType = subItemsItemType;
+            }
+          }
+        }
       }
     }
 
