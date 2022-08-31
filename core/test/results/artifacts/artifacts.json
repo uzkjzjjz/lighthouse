@@ -169,7 +169,13 @@
     "precomputedLanternData": null,
     "onlyAudits": null,
     "onlyCategories": null,
-    "skipAudits": null
+    "skipAudits": null,
+    "skipAboutBlank": false,
+    "pauseAfterFcpMs": 1000,
+    "pauseAfterLoadMs": 1000,
+    "networkQuietThresholdMs": 1000,
+    "cpuQuietThresholdMs": 1000,
+    "blankPage": "about:blank"
   },
   "URL": {
     "requestedUrl": "http://localhost:10200/dobetterweb/dbw_tester.html",
