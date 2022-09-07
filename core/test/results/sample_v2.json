@@ -1304,6 +1304,7 @@
             "statusCode": 200,
             "mimeType": "text/html",
             "resourceType": "Document",
+            "priority": "VeryHigh",
             "experimentalFromMainFrame": true
           },
           {
@@ -1317,6 +1318,7 @@
             "statusCode": 200,
             "mimeType": "text/css",
             "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
             "experimentalFromMainFrame": true
           },
           {
@@ -1330,6 +1332,7 @@
             "statusCode": 404,
             "mimeType": "text/css",
             "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
             "experimentalFromMainFrame": true
           },
           {
@@ -1343,6 +1346,7 @@
             "statusCode": 200,
             "mimeType": "text/css",
             "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
             "experimentalFromMainFrame": true
           },
           {
@@ -1356,6 +1360,7 @@
             "statusCode": 200,
             "mimeType": "text/css",
             "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
             "experimentalFromMainFrame": true
           },
           {
@@ -1369,6 +1374,7 @@
             "statusCode": 200,
             "mimeType": "text/css",
             "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
             "experimentalFromMainFrame": true
           },
           {
@@ -1382,6 +1388,7 @@
             "statusCode": 200,
             "mimeType": "text/css",
             "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
             "isLinkPreload": true,
             "experimentalFromMainFrame": true
           },
@@ -1396,6 +1403,7 @@
             "statusCode": 200,
             "mimeType": "text/css",
             "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
             "experimentalFromMainFrame": true
           },
           {
@@ -1409,6 +1417,7 @@
             "statusCode": 200,
             "mimeType": "application/javascript",
             "resourceType": "Script",
+            "priority": "High",
             "experimentalFromMainFrame": true
           },
           {
@@ -1422,6 +1431,7 @@
             "statusCode": 200,
             "mimeType": "application/javascript",
             "resourceType": "Script",
+            "priority": "High",
             "experimentalFromMainFrame": true
           },
           {
@@ -1435,6 +1445,7 @@
             "statusCode": 200,
             "mimeType": "text/css",
             "resourceType": "Stylesheet",
+            "priority": "VeryLow",
             "experimentalFromMainFrame": true
           },
           {
@@ -1448,6 +1459,7 @@
             "statusCode": 404,
             "mimeType": "application/javascript",
             "resourceType": "Script",
+            "priority": "High",
             "experimentalFromMainFrame": true
           },
           {
@@ -1461,6 +1473,7 @@
             "statusCode": 200,
             "mimeType": "image/jpeg",
             "resourceType": "Image",
+            "priority": "Low",
             "experimentalFromMainFrame": true
           },
           {
@@ -1474,6 +1487,7 @@
             "statusCode": 200,
             "mimeType": "image/jpeg",
             "resourceType": "Image",
+            "priority": "High",
             "experimentalFromMainFrame": true
           },
           {
@@ -1487,6 +1501,7 @@
             "statusCode": 200,
             "mimeType": "image/jpeg",
             "resourceType": "Image",
+            "priority": "High",
             "experimentalFromMainFrame": true
           },
           {
@@ -1500,6 +1515,7 @@
             "statusCode": 200,
             "mimeType": "image/jpeg",
             "resourceType": "Image",
+            "priority": "High",
             "experimentalFromMainFrame": true
           },
           {
@@ -1513,6 +1529,7 @@
             "statusCode": 200,
             "mimeType": "image/jpeg",
             "resourceType": "Image",
+            "priority": "High",
             "experimentalFromMainFrame": true
           },
           {
@@ -1526,6 +1543,7 @@
             "statusCode": 200,
             "mimeType": "image/gif",
             "resourceType": "Image",
+            "priority": "Low",
             "experimentalFromMainFrame": true
           },
           {
@@ -1539,6 +1557,7 @@
             "statusCode": 200,
             "mimeType": "application/javascript",
             "resourceType": "Script",
+            "priority": "Medium",
             "experimentalFromMainFrame": true
           },
           {
@@ -1552,6 +1571,7 @@
             "statusCode": 200,
             "mimeType": "text/javascript",
             "resourceType": "Script",
+            "priority": "Medium",
             "experimentalFromMainFrame": true
           },
           {
@@ -1565,6 +1585,7 @@
             "statusCode": 200,
             "mimeType": "image/jpeg",
             "resourceType": "Image",
+            "priority": "High",
             "experimentalFromMainFrame": true
           },
           {
@@ -1578,6 +1599,7 @@
             "statusCode": 200,
             "mimeType": "text/css",
             "resourceType": "Stylesheet",
+            "priority": "VeryHigh",
             "experimentalFromMainFrame": true
           },
           {
@@ -1591,6 +1613,7 @@
             "statusCode": 200,
             "mimeType": "text/html",
             "resourceType": "XHR",
+            "priority": "VeryHigh",
             "experimentalFromMainFrame": true
           },
           {
@@ -1604,6 +1627,7 @@
             "statusCode": 200,
             "mimeType": "text/plain",
             "resourceType": "Image",
+            "priority": "Low",
             "experimentalFromMainFrame": true
           },
           {
@@ -1617,6 +1641,7 @@
             "statusCode": 200,
             "mimeType": "text/html",
             "resourceType": "Image",
+            "priority": "Low",
             "experimentalFromMainFrame": true
           },
           {
@@ -1630,6 +1655,7 @@
             "statusCode": 404,
             "mimeType": "image/vnd.microsoft.icon",
             "resourceType": "Other",
+            "priority": "High",
             "experimentalFromMainFrame": true
           }
         ],
@@ -2559,17 +2585,8 @@
       "id": "preload-lcp-image",
       "title": "Preload Largest Contentful Paint image",
       "description": "If the LCP element is dynamically added to the page, you should preload the image in order to improve LCP. [Learn more about preloading LCP elements](https://web.dev/optimize-lcp/#preload-important-resources).",
-      "score": 1,
-      "scoreDisplayMode": "numeric",
-      "numericValue": 0,
-      "numericUnit": "millisecond",
-      "displayValue": "",
-      "details": {
-        "type": "opportunity",
-        "headings": [],
-        "items": [],
-        "overallSavingsMs": 0
-      }
+      "score": null,
+      "scoreDisplayMode": "notApplicable"
     },
     "csp-xss": {
       "id": "csp-xss",
@@ -7545,12 +7562,6 @@
       {
         "startTime": 0,
         "name": "lh:audit:preload-lcp-image",
-        "duration": 100,
-        "entryType": "measure"
-      },
-      {
-        "startTime": 0,
-        "name": "lh:computed:LanternLargestContentfulPaint",
         "duration": 100,
         "entryType": "measure"
       },
