@@ -4,8 +4,8 @@
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
  */
 
-import * as helpers from '../../../fraggle-rock/gather/runner-helpers.js';
-import Gatherer from '../../../fraggle-rock/gather/base-gatherer.js';
+import * as helpers from '../../../gather/runner-helpers.js';
+import Gatherer from '../../../gather/base-gatherer.js';
 import {defaultSettings} from '../../../config/constants.js';
 import {createMockDriver, createMockGathererInstance, createMockBaseArtifacts} from './mock-driver.js'; // eslint-disable-line max-len
 
@@ -76,7 +76,7 @@ describe('collectArtifactDependencies', () => {
 });
 
 describe('collectPhaseArtifacts', () => {
-  /** @type {import('../../../fraggle-rock/gather/runner-helpers').ArtifactState} */
+  /** @type {import('../../../gather/runner-helpers').ArtifactState} */
   let artifactState = {
     startInstrumentation: {},
     startSensitiveInstrumentation: {},

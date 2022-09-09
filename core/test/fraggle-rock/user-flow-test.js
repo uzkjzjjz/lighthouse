@@ -9,7 +9,7 @@ import * as td from 'testdouble';
 
 import {Runner} from '../../runner.js';
 import {createMockPage, mockRunnerModule} from './gather/mock-driver.js';
-// import UserFlow from '../../fraggle-rock/user-flow.js';
+// import UserFlow from '../../user-flow.js';
 
 // Some imports needs to be done dynamically, so that their dependencies will be mocked.
 // See: https://jestjs.io/docs/ecmascript-modules#differences-between-esm-and-commonjs
@@ -24,11 +24,11 @@ before(async () => {
 });
 
 const snapshotModule = {snapshotGather: jestMock.fn()};
-await td.replaceEsm('../../fraggle-rock/gather/snapshot-runner.js', snapshotModule);
+await td.replaceEsm('../../gather/snapshot-runner.js', snapshotModule);
 const navigationModule = {navigationGather: jestMock.fn()};
-await td.replaceEsm('../../fraggle-rock/gather/navigation-runner.js', navigationModule);
+await td.replaceEsm('../../gather/navigation-runner.js', navigationModule);
 const timespanModule = {startTimespanGather: jestMock.fn()};
-await td.replaceEsm('../../fraggle-rock/gather/timespan-runner.js', timespanModule);
+await td.replaceEsm('../../gather/timespan-runner.js', timespanModule);
 
 const mockRunner = await mockRunnerModule();
 

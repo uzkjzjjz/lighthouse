@@ -4,7 +4,7 @@
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
  */
 
-// import {snapshotGather} from '../../../fraggle-rock/gather/snapshot-runner.js';
+// import {snapshotGather} from '../../../gather/snapshot-runner.js';
 import * as td from 'testdouble';
 
 import {
@@ -18,11 +18,11 @@ import {
 // Some imports needs to be done dynamically, so that their dependencies will be mocked.
 // See: https://jestjs.io/docs/ecmascript-modules#differences-between-esm-and-commonjs
 //      https://github.com/facebook/jest/issues/10025
-/** @type {import('../../../fraggle-rock/gather/snapshot-runner.js')['snapshotGather']} */
+/** @type {import('../../../gather/snapshot-runner.js')['snapshotGather']} */
 let snapshotGather;
 
 before(async () => {
-  snapshotGather = (await import('../../../fraggle-rock/gather/snapshot-runner.js')).snapshotGather;
+  snapshotGather = (await import('../../../gather/snapshot-runner.js')).snapshotGather;
 });
 
 const mockRunner = await mockRunnerModule();
@@ -31,7 +31,7 @@ const mockRunner = await mockRunnerModule();
 /** @type {ReturnType<typeof createMockDriver>} */
 let mockDriver;
 
-await td.replaceEsm('../../../fraggle-rock/gather/driver.js',
+await td.replaceEsm('../../../gather/driver.js',
   mockDriverModule(() => mockDriver.asDriver()));
 
 describe('Snapshot Runner', () => {

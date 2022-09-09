@@ -6,7 +6,7 @@
 
 import * as td from 'testdouble';
 
-// import {startTimespanGather} from '../../../fraggle-rock/gather/timespan-runner.js';
+// import {startTimespanGather} from '../../../gather/timespan-runner.js';
 import {
   createMockDriver,
   createMockPage,
@@ -19,12 +19,12 @@ import {
 // Some imports needs to be done dynamically, so that their dependencies will be mocked.
 // See: https://jestjs.io/docs/ecmascript-modules#differences-between-esm-and-commonjs
 //      https://github.com/facebook/jest/issues/10025
-/** @type {import('../../../fraggle-rock/gather/timespan-runner.js')['startTimespanGather']} */
+/** @type {import('../../../gather/timespan-runner.js')['startTimespanGather']} */
 let startTimespanGather;
 
 before(async () => {
   startTimespanGather =
-    (await import('../../../fraggle-rock/gather/timespan-runner.js')).startTimespanGather;
+    (await import('../../../gather/timespan-runner.js')).startTimespanGather;
 });
 
 const mockSubmodules = await mockDriverSubmodules();
@@ -33,7 +33,7 @@ const mockRunner = await mockRunnerModule();
 // Establish the mocks before we import the file under test.
 /** @type {ReturnType<typeof createMockDriver>} */
 let mockDriver;
-await td.replaceEsm('../../../fraggle-rock/gather/driver.js',
+await td.replaceEsm('../../../gather/driver.js',
   mockDriverModule(() => mockDriver.asDriver()));
 
 describe('Timespan Runner', () => {
