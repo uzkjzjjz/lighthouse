@@ -6,9 +6,9 @@
 
 import log from 'lighthouse-logger';
 
-import {ExecutionContext} from '../../gather/driver/execution-context.js';
-import {TargetManager} from '../../gather/driver/target-manager.js';
-import {Fetcher} from '../../gather/fetcher.js';
+import {ExecutionContext} from './driver/execution-context.js';
+import {TargetManager} from './driver/target-manager.js';
+import {Fetcher} from './fetcher.js';
 
 /** @return {*} */
 const throwNotConnectedFn = () => {

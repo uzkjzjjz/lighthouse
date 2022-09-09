@@ -7,9 +7,9 @@
 import log from 'lighthouse-logger';
 
 import {Driver} from './driver.js';
-import {Runner} from '../../runner.js';
+import {Runner} from '../runner.js';
 import {getEmptyArtifactState, collectPhaseArtifacts, awaitArtifacts} from './runner-helpers.js';
-import {prepareTargetForTimespanMode} from '../../gather/driver/prepare.js';
+import {prepareTargetForTimespanMode} from './driver/prepare.js';
 import {initializeConfig} from '../config/config.js';
 import {getBaseArtifacts, finalizeArtifacts} from './base-artifacts.js';
 

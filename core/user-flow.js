@@ -4,11 +4,11 @@
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
  */
 
-import {ReportGenerator} from '../../report/generator/report-generator.js';
+import {ReportGenerator} from '../report/generator/report-generator.js';
 import {snapshotGather} from './gather/snapshot-runner.js';
 import {startTimespanGather} from './gather/timespan-runner.js';
 import {navigationGather} from './gather/navigation-runner.js';
-import {Runner} from '../runner.js';
+import {Runner} from './runner.js';
 import {initializeConfig} from './config/config.js';
 
 /** @typedef {Parameters<snapshotGather>[0]} FrOptions */

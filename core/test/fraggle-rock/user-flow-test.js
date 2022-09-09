@@ -14,13 +14,13 @@ import {createMockPage, mockRunnerModule} from './gather/mock-driver.js';
 // Some imports needs to be done dynamically, so that their dependencies will be mocked.
 // See: https://jestjs.io/docs/ecmascript-modules#differences-between-esm-and-commonjs
 //      https://github.com/facebook/jest/issues/10025
-/** @type {typeof import('../../fraggle-rock/user-flow.js').UserFlow} */
+/** @type {typeof import('../../user-flow.js').UserFlow} */
 let UserFlow;
-/** @type {typeof import('../../fraggle-rock/user-flow.js')['auditGatherSteps']} */
+/** @type {typeof import('../../user-flow.js')['auditGatherSteps']} */
 let auditGatherSteps;
 
 before(async () => {
-  ({UserFlow, auditGatherSteps} = await import('../../fraggle-rock/user-flow.js'));
+  ({UserFlow, auditGatherSteps} = await import('../../user-flow.js'));
 });
 
 const snapshotModule = {snapshotGather: jestMock.fn()};

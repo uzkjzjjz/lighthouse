@@ -8,22 +8,22 @@ import puppeteer from 'puppeteer-core';
 import log from 'lighthouse-logger';
 
 import {Driver} from './driver.js';
-import {Runner} from '../../runner.js';
+import {Runner} from '../runner.js';
 import {getEmptyArtifactState, collectPhaseArtifacts, awaitArtifacts} from './runner-helpers.js';
-import * as prepare from '../../gather/driver/prepare.js';
-import {gotoURL} from '../../gather/driver/navigation.js';
-import * as storage from '../../gather/driver/storage.js';
-import * as emulation from '../../lib/emulation.js';
-import {defaultNavigationConfig} from '../../config/constants.js';
+import * as prepare from './driver/prepare.js';
+import {gotoURL} from './driver/navigation.js';
+import * as storage from './driver/storage.js';
+import * as emulation from '../lib/emulation.js';
+import {defaultNavigationConfig} from '../config/constants.js';
 import {initializeConfig} from '../config/config.js';
 import {getBaseArtifacts, finalizeArtifacts} from './base-artifacts.js';
-import * as format from '../../../shared/localization/format.js';
-import {LighthouseError} from '../../lib/lh-error.js';
-import UrlUtils from '../../lib/url-utils.js';
-import {getPageLoadError} from '../../lib/navigation-error.js';
-import Trace from '../../gather/gatherers/trace.js';
-import DevtoolsLog from '../../gather/gatherers/devtools-log.js';
-import {NetworkRecords} from '../../computed/network-records.js';
+import * as format from '../../shared/localization/format.js';
+import {LighthouseError} from '../lib/lh-error.js';
+import UrlUtils from '../lib/url-utils.js';
+import {getPageLoadError} from '../lib/navigation-error.js';
+import Trace from './gatherers/trace.js';
+import DevtoolsLog from './gatherers/devtools-log.js';
+import {NetworkRecords} from '../computed/network-records.js';
 
 /**
  * @typedef NavigationContext

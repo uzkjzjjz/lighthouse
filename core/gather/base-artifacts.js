@@ -9,7 +9,7 @@ import isDeepEqual from 'lodash/isEqual.js';
 
 import {
   getBrowserVersion, getBenchmarkIndex, getEnvironmentWarnings,
-} from '../../gather/driver/environment.js';
+} from './driver/environment.js';
 
 /**
  * @param {LH.Config.FRConfig} config
