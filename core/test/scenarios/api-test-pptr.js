@@ -6,9 +6,9 @@
 
 import jestMock from 'jest-mock';
 
-import * as lighthouse from '../../../api.js';
+import * as lighthouse from '../../api.js';
 import {createTestState, getAuditsBreakdown} from './pptr-test-utils.js';
-import {LH_ROOT} from '../../../../root.js';
+import {LH_ROOT} from '../../../root.js';
 
 describe('Fraggle Rock API', function() {
   // eslint-disable-next-line no-invalid-this

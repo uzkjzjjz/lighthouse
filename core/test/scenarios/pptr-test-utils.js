@@ -8,9 +8,9 @@ import {before, beforeEach, after, afterEach} from 'mocha';
 import puppeteer from 'puppeteer-core';
 import {getChromePath} from 'chrome-launcher';
 
-import {Server} from '../../../../cli/test/fixtures/static-server.js';
+import {Server} from '../../../cli/test/fixtures/static-server.js';
 
-/** @typedef {InstanceType<typeof import('../../../../cli/test/fixtures/static-server.js').Server>} StaticServer */
+/** @typedef {InstanceType<typeof import('../../../cli/test/fixtures/static-server.js').Server>} StaticServer */
 
 /**
  * Some audits can be notApplicable based on machine timing information.

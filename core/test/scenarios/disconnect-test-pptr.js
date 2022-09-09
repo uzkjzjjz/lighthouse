@@ -6,9 +6,9 @@
 
 /* eslint-env browser */
 
-import * as lighthouse from '../../../api.js';
+import * as lighthouse from '../../api.js';
 import {createTestState} from './pptr-test-utils.js';
-import {LH_ROOT} from '../../../../root.js';
+import {LH_ROOT} from '../../../root.js';
 
 describe('Disconnect', function() {
   // eslint-disable-next-line no-invalid-this

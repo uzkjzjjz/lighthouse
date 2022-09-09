@@ -4,14 +4,13 @@
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
  */
 
+// import {snapshotGather} from '../../../gather/snapshot-runner.js';
 import * as td from 'testdouble';
 
-// import {startTimespanGather} from '../../../gather/timespan-runner.js';
 import {
   createMockDriver,
   createMockPage,
   createMockGathererInstance,
-  mockDriverSubmodules,
   mockDriverModule,
   mockRunnerModule,
 } from './mock-driver.js';
@@ -19,24 +18,23 @@ import {
 // Some imports needs to be done dynamically, so that their dependencies will be mocked.
 // See: https://jestjs.io/docs/ecmascript-modules#differences-between-esm-and-commonjs
 //      https://github.com/facebook/jest/issues/10025
-/** @type {import('../../../gather/timespan-runner.js')['startTimespanGather']} */
-let startTimespanGather;
+/** @type {import('../../gather/snapshot-runner.js')['snapshotGather']} */
+let snapshotGather;
 
 before(async () => {
-  startTimespanGather =
-    (await import('../../../gather/timespan-runner.js')).startTimespanGather;
+  snapshotGather = (await import('../../gather/snapshot-runner.js')).snapshotGather;
 });
 
-const mockSubmodules = await mockDriverSubmodules();
 const mockRunner = await mockRunnerModule();
 
 // Establish the mocks before we import the file under test.
 /** @type {ReturnType<typeof createMockDriver>} */
 let mockDriver;
-await td.replaceEsm('../../../gather/driver.js',
+
+await td.replaceEsm('../../gather/driver.js',
   mockDriverModule(() => mockDriver.asDriver()));
 
-describe('Timespan Runner', () => {
+describe('Snapshot Runner', () => {
   /** @type {ReturnType<typeof createMockPage>} */
   let mockPage;
   /** @type {LH.Puppeteer.Page} */
@@ -49,7 +47,6 @@ describe('Timespan Runner', () => {
   let config;
 
   beforeEach(() => {
-    mockSubmodules.reset();
     mockPage = createMockPage();
     mockDriver = createMockDriver();
     mockRunner.reset();
@@ -60,10 +57,10 @@ describe('Timespan Runner', () => {
       userAgent: 'Chrome',
     });
 
-    gathererA = createMockGathererInstance({supportedModes: ['timespan']});
+    gathererA = createMockGathererInstance({supportedModes: ['snapshot']});
     gathererA.getArtifact.mockResolvedValue('Artifact A');
 
-    gathererB = createMockGathererInstance({supportedModes: ['timespan']});
+    gathererB = createMockGathererInstance({supportedModes: ['snapshot']});
     gathererB.getArtifact.mockResolvedValue('Artifact B');
 
     config = {
@@ -75,45 +72,34 @@ describe('Timespan Runner', () => {
   });
 
   it('should connect to the page and run', async () => {
-    const timespan = await startTimespanGather({page, config});
-    await timespan.endTimespanGather();
+    await snapshotGather({page, config});
     expect(mockDriver.connect).toHaveBeenCalled();
     expect(mockRunner.gather).toHaveBeenCalled();
     expect(mockRunner.audit).not.toHaveBeenCalled();
   });
 
-  it('should prepare the target', async () => {
-    const timespan = await startTimespanGather({page, config});
-    expect(mockSubmodules.prepareMock.prepareTargetForTimespanMode).toHaveBeenCalled();
-    await timespan.endTimespanGather();
-  });
-
-  it('should invoke startInstrumentation', async () => {
-    const timespan = await startTimespanGather({page, config});
-    expect(gathererA.startInstrumentation).toHaveBeenCalled();
-    expect(gathererB.startInstrumentation).toHaveBeenCalled();
-    expect(gathererA.startSensitiveInstrumentation).toHaveBeenCalled();
-    expect(gathererB.startSensitiveInstrumentation).toHaveBeenCalled();
-    await timespan.endTimespanGather();
-  });
-
   it('should collect base artifacts', async () => {
-    mockDriver.url.mockResolvedValue('https://start.example.com/');
+    mockDriver.url.mockResolvedValue('https://lighthouse.example.com/');
 
-    const timespan = await startTimespanGather({page, config});
-
-    mockDriver.url.mockResolvedValue('https://end.example.com/');
-
-    await timespan.endTimespanGather();
+    await snapshotGather({page, config});
     const artifacts = await mockRunner.gather.mock.calls[0][0]();
     expect(artifacts).toMatchObject({
       fetchTime: expect.any(String),
       URL: {
-        initialUrl: 'https://start.example.com/',
-        finalUrl: 'https://end.example.com/',
+        initialUrl: 'https://lighthouse.example.com/',
+        finalUrl: 'https://lighthouse.example.com/',
       },
     });
   });
+
+  it('should collect snapshot artifacts', async () => {
+    await snapshotGather({page, config});
+    const artifacts = await mockRunner.gather.mock.calls[0][0]();
+    expect(artifacts).toMatchObject({A: 'Artifact A', B: 'Artifact B'});
+    expect(gathererA.getArtifact).toHaveBeenCalled();
+    expect(gathererB.getArtifact).toHaveBeenCalled();
+  });
+
 
   it('should use flags', async () => {
     const flags = {
@@ -122,8 +108,7 @@ describe('Timespan Runner', () => {
       screenEmulation: {mobile: false},
     };
 
-    const timespan = await startTimespanGather({page, config, flags});
-    await timespan.endTimespanGather();
+    await snapshotGather({page, config, flags});
 
     expect(mockRunner.gather.mock.calls[0][1]).toMatchObject({
       config: {
@@ -132,44 +117,22 @@ describe('Timespan Runner', () => {
     });
   });
 
-  it('should invoke stop instrumentation', async () => {
-    const timespan = await startTimespanGather({page, config});
-    await timespan.endTimespanGather();
+  it('should not invoke instrumentation methods', async () => {
+    await snapshotGather({page, config});
     await mockRunner.gather.mock.calls[0][0]();
-    expect(gathererA.stopSensitiveInstrumentation).toHaveBeenCalled();
-    expect(gathererB.stopSensitiveInstrumentation).toHaveBeenCalled();
-    expect(gathererA.stopInstrumentation).toHaveBeenCalled();
-    expect(gathererB.stopInstrumentation).toHaveBeenCalled();
-  });
-
-  it('should collect timespan artifacts', async () => {
-    const timespan = await startTimespanGather({page, config});
-    await timespan.endTimespanGather();
-    const artifacts = await mockRunner.gather.mock.calls[0][0]();
-    expect(artifacts).toMatchObject({A: 'Artifact A', B: 'Artifact B'});
-  });
-
-  it('should carryover failures from startInstrumentation', async () => {
-    const artifactError = new Error('BEFORE_TIMESPAN_ERROR');
-    gathererA.startInstrumentation.mockRejectedValue(artifactError);
-
-    const timespan = await startTimespanGather({page, config});
-    await timespan.endTimespanGather();
-    const artifacts = await mockRunner.gather.mock.calls[0][0]();
-    expect(artifacts).toMatchObject({A: artifactError, B: 'Artifact B'});
+    expect(gathererA.startInstrumentation).not.toHaveBeenCalled();
+    expect(gathererA.startSensitiveInstrumentation).not.toHaveBeenCalled();
+    expect(gathererA.stopSensitiveInstrumentation).not.toHaveBeenCalled();
     expect(gathererA.stopInstrumentation).not.toHaveBeenCalled();
-    expect(gathererB.stopInstrumentation).toHaveBeenCalled();
   });
 
-  it('should skip snapshot artifacts', async () => {
-    gathererB.meta.supportedModes = ['snapshot'];
+  it('should skip timespan artifacts', async () => {
+    gathererB.meta.supportedModes = ['timespan'];
 
-    const timespan = await startTimespanGather({page, config});
-    await timespan.endTimespanGather();
+    await snapshotGather({page, config});
     const artifacts = await mockRunner.gather.mock.calls[0][0]();
     expect(artifacts).toMatchObject({A: 'Artifact A'});
     expect(artifacts).not.toHaveProperty('B');
-    expect(gathererB.startInstrumentation).not.toHaveBeenCalled();
     expect(gathererB.getArtifact).not.toHaveBeenCalled();
   });
 
@@ -179,8 +142,7 @@ describe('Timespan Runner', () => {
     // @ts-expect-error - the default fixture was defined as one without dependencies.
     gathererB.meta.dependencies = {ImageElements: dependencySymbol};
 
-    const timespan = await startTimespanGather({page, config});
-    await timespan.endTimespanGather();
+    await snapshotGather({page, config});
     const artifacts = await mockRunner.gather.mock.calls[0][0]();
     expect(artifacts).toMatchObject({A: 'Artifact A', B: 'Artifact B'});
     expect(gathererB.getArtifact.mock.calls[0][0]).toMatchObject({

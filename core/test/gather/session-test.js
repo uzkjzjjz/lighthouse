@@ -8,14 +8,14 @@ import {EventEmitter} from 'events';
 
 import {CDPSession} from 'puppeteer/lib/cjs/puppeteer/common/Connection.js';
 
-import {ProtocolSession} from '../../../gather/session.js';
+import {ProtocolSession} from '../../gather/session.js';
 import {
   flushAllTimersAndMicrotasks,
   makePromiseInspectable,
   createDecomposedPromise,
   fnAny,
   timers,
-} from '../../test-utils.js';
+} from '../test-utils.js';
 
 timers.useFakeTimers();
 

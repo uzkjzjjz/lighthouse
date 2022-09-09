@@ -15,13 +15,13 @@ import {
   createMockOnFn,
   createMockOnceFn,
   createMockSendCommandFn,
-} from '../../gather/mock-commands.js';
-import * as constants from '../../../config/constants.js';
-import {fnAny} from '../../test-utils.js';
-import {LH_ROOT} from '../../../../root.js';
+} from './mock-commands.js';
+import * as constants from '../../config/constants.js';
+import {fnAny} from '../test-utils.js';
+import {LH_ROOT} from '../../../root.js';
 
-/** @typedef {import('../../../gather/driver.js').Driver} Driver */
-/** @typedef {import('../../../gather/driver/execution-context.js')} ExecutionContext */
+/** @typedef {import('../../gather/driver.js').Driver} Driver */
+/** @typedef {import('../../gather/driver/execution-context.js')} ExecutionContext */
 
 function createMockSession() {
   return {
@@ -141,7 +141,7 @@ function createMockTargetManager(session) {
     on: createMockOnFn(),
     off: fnAny(),
 
-    /** @return {import('../../../gather/driver/target-manager.js')} */
+    /** @return {import('../../gather/driver/target-manager.js')} */
     asTargetManager() {
       // @ts-expect-error - We'll rely on the tests passing to know this matches.
       return this;
@@ -290,11 +290,11 @@ async function mockDriverSubmodules() {
     return (...args) => target[name](...args);
   };
 
-  await td.replaceEsm('../../../gather/driver/navigation.js', new Proxy(navigationMock, {get}));
-  await td.replaceEsm('../../../gather/driver/prepare.js', new Proxy(prepareMock, {get}));
-  await td.replaceEsm('../../../gather/driver/storage.js', new Proxy(storageMock, {get}));
-  await td.replaceEsm('../../../gather/driver/network.js', new Proxy(networkMock, {get}));
-  await td.replaceEsm('../../../lib/emulation.js', new Proxy(emulationMock, {get}));
+  await td.replaceEsm('../../gather/driver/navigation.js', new Proxy(navigationMock, {get}));
+  await td.replaceEsm('../../gather/driver/prepare.js', new Proxy(prepareMock, {get}));
+  await td.replaceEsm('../../gather/driver/storage.js', new Proxy(storageMock, {get}));
+  await td.replaceEsm('../../gather/driver/network.js', new Proxy(networkMock, {get}));
+  await td.replaceEsm('../../lib/emulation.js', new Proxy(emulationMock, {get}));
 
   reset();
 
