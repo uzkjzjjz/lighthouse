@@ -93,7 +93,7 @@ async function rebaselineArtifacts(artifactKeys) {
 
   await flow.navigate('https://www.mikescerealshack.co');
 
-  await flow.startTimespan({stepName: 'Search input'});
+  await flow.startTimespan({name: 'Search input'});
   await page.type('input', 'call of duty');
   const networkQuietPromise = page.waitForNavigation({waitUntil: ['networkidle0']});
   await page.click('button[type=submit]');
@@ -101,7 +101,7 @@ async function rebaselineArtifacts(artifactKeys) {
   await waitForImagesToLoad(page);
   await flow.endTimespan();
 
-  await flow.snapshot({stepName: 'Search results'});
+  await flow.snapshot({name: 'Search results'});
 
   await flow.navigate('https://www.mikescerealshack.co/corrections');
 

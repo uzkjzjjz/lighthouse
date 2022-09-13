@@ -243,7 +243,7 @@ async function auditGatherSteps(gatherSteps, options) {
   const steps = [];
   for (const gatherStep of gatherSteps) {
     const {artifacts, stepFlags} = gatherStep;
-    const name = stepFlags?.stepName || getDefaultStepName(artifacts);
+    const name = stepFlags?.name || getDefaultStepName(artifacts);
 
     let runnerOptions = options.gatherStepRunnerOptions?.get(gatherStep);
 

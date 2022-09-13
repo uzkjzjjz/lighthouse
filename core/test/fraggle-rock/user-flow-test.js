@@ -89,7 +89,7 @@ describe('UserFlow', () => {
     it('should invoke navigation runner', async () => {
       const flow = new UserFlow(mockPage.asPage());
 
-      await flow.navigate('https://example.com/1', {stepName: 'My Step'});
+      await flow.navigate('https://example.com/1', {name: 'My Step'});
 
       const flags = {maxWaitForLoad: 1000};
       await flow.navigate('https://example.com/2', flags);
@@ -98,7 +98,7 @@ describe('UserFlow', () => {
 
       expect(navigationModule.navigationGather).toHaveBeenCalledTimes(3);
       expect(flow._gatherSteps).toMatchObject([
-        {stepFlags: {stepName: 'My Step'}},
+        {stepFlags: {name: 'My Step'}},
         {stepFlags: {maxWaitForLoad: 1000, skipAboutBlank: true, disableStorageReset: true}},
         {stepFlags: {skipAboutBlank: true, disableStorageReset: true}},
       ]);
@@ -228,7 +228,7 @@ describe('UserFlow', () => {
     it('should invoke timespan runner', async () => {
       const flow = new UserFlow(mockPage.asPage());
 
-      await flow.startTimespan({stepName: 'My Timespan'});
+      await flow.startTimespan({name: 'My Timespan'});
       await flow.endTimespan();
 
       await flow.startTimespan();
@@ -236,7 +236,7 @@ describe('UserFlow', () => {
 
       expect(timespanModule.startTimespanGather).toHaveBeenCalledTimes(2);
       expect(flow._gatherSteps).toMatchObject([
-        {stepFlags: {stepName: 'My Timespan'}},
+        {stepFlags: {name: 'My Timespan'}},
         {stepFlags: undefined},
       ]);
     });
@@ -259,12 +259,12 @@ describe('UserFlow', () => {
     it('should invoke snapshot runner', async () => {
       const flow = new UserFlow(mockPage.asPage());
 
-      await flow.snapshot({stepName: 'My Snapshot'});
+      await flow.snapshot({name: 'My Snapshot'});
       await flow.snapshot();
 
       expect(snapshotModule.snapshotGather).toHaveBeenCalledTimes(2);
       expect(flow._gatherSteps).toMatchObject([
-        {stepFlags: {stepName: 'My Snapshot'}},
+        {stepFlags: {name: 'My Snapshot'}},
         {stepFlags: undefined},
       ]);
     });
@@ -287,9 +287,9 @@ describe('UserFlow', () => {
       const flow = new UserFlow(mockPage.asPage());
 
       await flow.navigate('https://www.example.com/');
-      await flow.startTimespan({stepName: 'My Timespan'});
+      await flow.startTimespan({name: 'My Timespan'});
       await flow.endTimespan();
-      await flow.snapshot({stepName: 'My Snapshot'});
+      await flow.snapshot({name: 'My Snapshot'});
 
       const flowResult = await flow.createFlowResult();
       expect(flowResult).toMatchObject({
@@ -334,7 +334,7 @@ describe('UserFlow', () => {
       /** @type {LH.UserFlow.GatherStep[]} */
       const gatherSteps = [
         {
-          stepFlags: {stepName: 'Navigation'},
+          stepFlags: {name: 'Navigation'},
           // @ts-expect-error Only these artifacts are used by the test.
           artifacts: {
             URL: {
@@ -347,7 +347,7 @@ describe('UserFlow', () => {
           },
         },
         {
-          stepFlags: {stepName: 'Timespan', onlyCategories: ['performance']},
+          stepFlags: {name: 'Timespan', onlyCategories: ['performance']},
           // @ts-expect-error Only these artifacts are used by the test.
           artifacts: {
             URL: {
@@ -358,7 +358,7 @@ describe('UserFlow', () => {
           },
         },
         {
-          stepFlags: {stepName: 'Snapshot', onlyCategories: ['accessibility']},
+          stepFlags: {name: 'Snapshot', onlyCategories: ['accessibility']},
           // @ts-expect-error Only these artifacts are used by the test.
           artifacts: {
             URL: {

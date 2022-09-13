@@ -12,7 +12,7 @@ declare module UserFlow {
   }
 
   export interface StepFlags extends LH.Flags {
-    stepName?: string;
+    name?: string;
   }
 
   export interface GatherStep {
