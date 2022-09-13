@@ -41,5 +41,4 @@ export default {
   id: 'lantern-idle-callback-short',
   expectations,
   config,
-  runSerially: true,
 };
