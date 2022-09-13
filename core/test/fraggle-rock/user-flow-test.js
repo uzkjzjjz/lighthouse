@@ -99,8 +99,8 @@ describe('UserFlow', () => {
       expect(navigationModule.navigationGather).toHaveBeenCalledTimes(3);
       expect(flow._gatherSteps).toMatchObject([
         {stepFlags: {stepName: 'My Step'}},
-        {stepFlags: undefined},
-        {stepFlags: undefined},
+        {stepFlags: {maxWaitForLoad: 1000, skipAboutBlank: true, disableStorageReset: true}},
+        {stepFlags: {skipAboutBlank: true, disableStorageReset: true}},
       ]);
     });
 
@@ -122,7 +122,7 @@ describe('UserFlow', () => {
       // Check that we have the property set.
       expect(navigationModule.navigationGather).toHaveBeenCalledTimes(4);
       /** @type {any[][]} */
-      const [[, call1], [, call2], [, call3], [, call4]] =
+      const [[,, call1], [,, call2], [,, call3], [,, call4]] =
         navigationModule.navigationGather.mock.calls;
       expect(call1).not.toHaveProperty('flags.disableStorageReset');
       expect(call2).toHaveProperty('flags.disableStorageReset');
@@ -152,7 +152,7 @@ describe('UserFlow', () => {
       // Check that we have the property set.
       expect(navigationModule.navigationGather).toHaveBeenCalledTimes(3);
       /** @type {any[][]} */
-      const [[, call1], [, call2], [, call3]] = navigationModule.navigationGather.mock.calls;
+      const [[,, call1], [,, call2], [,, call3]] = navigationModule.navigationGather.mock.calls;
       expect(call1).toHaveProperty('flags.skipAboutBlank');
       expect(call2).toHaveProperty('flags.skipAboutBlank');
       expect(call3).toHaveProperty('flags.skipAboutBlank');
@@ -170,7 +170,7 @@ describe('UserFlow', () => {
     it('should only run navigation setup', async () => {
       let setupDone = false;
       let teardownDone = false;
-      navigationModule.navigationGather.mockImplementation(async cb => {
+      navigationModule.navigationGather.mockImplementation(async (_, cb) => {
         setupDone = true;
         // @ts-expect-error
         await cb();
@@ -203,7 +203,7 @@ describe('UserFlow', () => {
     });
 
     it('should throw errors from the teardown phase', async () => {
-      navigationModule.navigationGather.mockImplementation(async cb => {
+      navigationModule.navigationGather.mockImplementation(async (_, cb) => {
         // @ts-expect-error
         await cb();
         throw new Error('Teardown Error');
