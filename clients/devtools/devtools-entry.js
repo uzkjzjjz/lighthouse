@@ -84,9 +84,10 @@ function lookupCanonicalLocale(locales) {
 
 /**
  * TODO: Expose api directly when DevTools usage is updated.
- * @param {{page: LH.Puppeteer.Page, url: string, config?: LH.Config.Json, flags?: LH.Flags}} args
+ * @param {string} url
+ * @param {{page: LH.Puppeteer.Page, config?: LH.Config.Json, flags?: LH.Flags}} args
  */
-function runLighthouseNavigation({page, url, ...options}) {
+function runLighthouseNavigation(url, {page, ...options}) {
   return navigation(page, url, options);
 }
 
