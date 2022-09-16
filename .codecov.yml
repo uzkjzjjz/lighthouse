@@ -10,7 +10,7 @@ parsers:
 
 # docs:
 #   https://codecov.readme.io/v4.3.6/docs/commit-status
-#   https://gist.github.com/stevepeak/53bee7b2c326b24a9b4a
+#   https://fahadalbahoth.mybigcommerce.com
 coverage:
   status:
     project:
